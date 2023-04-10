@@ -1,0 +1,39 @@
+<!-- banner -->
+<img src="assets/banner.webp" width="100%" height="400rem">
+
+<!-- Home Logo and Brand -->
+<div class="row" style="margin-bottom: 3%; margin-top: 2%;">
+  <div class="col d-flex">
+    <img [src]="Store_Logo" style="border-radius: 50%; width:4%">
+    <h2 style="color:#964B00">{{Store_name |uppercase}} </h2>
+  </div>
+</div>
+
+
+<!-- display data with table -->
+
+<table  class="table table-hover table-bordered"
+  style="width:70%; margin-left: auto;margin-right: auto; margin-bottom: 30px;">
+
+  <thead>
+    <tr>
+      <th scope="col" style="color:#964B00">ID</th>
+      <th scope="col" style="color:#964B00">Name</th>
+      <th scope="col" style="color:#964B00">Quantity</th>
+      <th scope="col" style="color:#964B00">Price</th>
+      <th scope="col" style="color:#964B00">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of ProductsListData">
+      <th scope="row">{{product.ID}}</th>
+      <td>{{product.Name}}</td>
+      <td>{{product.Quantity}}</td>
+      <td>{{product.Price}}</td>
+      <td><img [src]="product.Img" width="70rem"></td>
+    </tr>
+
+  </tbody>
+</table>
+
+

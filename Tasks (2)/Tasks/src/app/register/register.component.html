@@ -1,0 +1,114 @@
+<h3 style="color:#964B00;margin-left: 6.5%;margin-top: 1%;">Registeration Form</h3>
+
+<div class="container" style="border-radius: 50px;background-color:black;padding: 1%;margin-top: 1%;margin-bottom: 5%;">
+
+  <form [formGroup]="RegisterationForm" (ngSubmit)="submitData()">
+  <div style="color:white">{{RegisterationForm.value |json}}</div>
+
+    <div class="form-group" style="padding: 1%;">
+      <label style="color:white">Username:</label>
+      <input [class.is-invalid]="Username?.invalid && RegisterationForm.get('Username')?.touched "
+        formControlName="Username" type="text" class="form-control">
+      <div *ngIf="Username?.invalid && RegisterationForm.get('Username')?.touched">
+        <small *ngIf="Username?.errors?.['required']" class="text-danger">Username is required</small>
+        <small *ngIf="Username?.errors?.['minlength']" class="text-danger">Username must be at least 5 Char</small>
+        <small *ngIf="Username?.errors?.['forbiddenName']" class="text-danger">word admin is forbidden</small>
+        <small *ngIf="Username?.errors?.['pattern']" class="text-danger">Username Must Start with Capitalized Letter</small>
+
+      </div>
+    </div>
+
+    <div class="form-group" style="padding: 1%;">
+      <label style="color:white">Email:</label>
+      <input [class.is-invalid]="Email?.invalid && Email?.touched" formControlName="Email" type="email"
+        class="form-control">
+
+      <div *ngIf="Email?.invalid && Email?.touched">
+        <small *ngIf="Email?.errors?.['required']" class="text-danger">Email is required</small>
+        <small *ngIf="Email?.errors?.['email']" class="text-danger">Email must include @ and .com</small>
+      </div>
+
+
+    </div>
+
+    <!-- <div class="form-check mb-3" style="padding: 1%;">
+      <label class="form-check-label">Send me offers</label>
+      <input (click)="setEmailValidation()" formControlName="Subscribe" type="checkbox" class="form-check-input"
+        style="margin-left: 0.6%;">
+
+    </div> -->
+
+    <div formArrayName="AlternativeEmails" *ngFor="let email of AlternativeEmails.controls; let i=index">
+      <label style="color:white">Email Num {{i+1}} </label>
+      <input type="email" [formControlName]="i" class="form-control">
+      <button (click)="clearEmail(i)" class="btn btn-danger">clear email</button>
+    </div>
+    <button (click)="addAlternativeEmail()" class="btn btn-success float-right" style="margin-left: 0.8%;">Add Another
+      Email</button>
+
+    <div class="form-group" style="padding: 1%;">
+      <label style="color:white">Password:</label>
+      <input [class.is-invalid]="Pass?.invalid && Pass?.touched" formControlName="Pass" type="password" class="form-control">
+      <div *ngIf="Pass?.invalid && Pass?.touched">
+          <small *ngIf="Pass?.errors?.['required']" class="text-danger">Password is required</small>
+      </div>
+    </div>
+
+    <div class="form-group" style="padding: 1%;">
+      <label style="color:white">Confirm Password:</label>
+      <input [class.is-invalid]="ConfirmPassword?.invalid && ConfirmPassword?.touched" formControlName="ConfirmPass" type="password" class="form-control">
+
+      <div *ngIf="ConfirmPassword?.invalid && ConfirmPassword?.touched">
+        <small *ngIf="ConfirmPassword?.errors?.['required']"class="text-danger">Confirm password is required</small>
+      </div>
+
+      <small *ngIf="RegisterationForm.errors?.['misMatch']" class="text-danger">Confirm Password and Password Not
+        Matched</small>
+
+    </div>
+
+    <div formGroupName="Address" style="border-radius: 30px;background-color: bisque;padding: 0.5%;">Address
+      <div class="form-group" style="padding: 1%;">
+        <label>State:</label>
+        <input [class.is-invalid]="RegisterationForm.get('State')?.invalid && RegisterationForm.get('State')?.touched" formControlName="State" type="text" class="form-control">
+        <div *ngIf="RegisterationForm.get('State')?.invalid && RegisterationForm.get('State')?.touched">
+          <small *ngIf="RegisterationForm.get('State')?.errors?.['required']" class="text-danger">State is required</small>
+        </div>
+      </div>
+
+      <div class="form-group" style="padding: 1%;">
+        <label>City:</label>
+        <input [class.is-invalid]="City?.invalid && City?.touched" formControlName="City" type="text" class="form-control">
+        <div *ngIf="City?.invalid && City?.touched">
+          <small *ngIf="City?.errors?.['required']" class="text-danger">City is required</small>
+        </div>
+      </div>
+
+      <div class="form-group" style="padding: 1%;">
+        <label>Postal Code:</label>
+        <input [class.is-invalid]="PostalCode?.invalid && PostalCode?.touched" formControlName="PostalCode" type="text" class="form-control">
+        <div *ngIf="PostalCode?.invalid && PostalCode?.touched">
+          <small *ngIf="PostalCode?.errors?.['required']" class="text-danger">Postal Code is required</small>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group">
+      <select [class.is-invalid]="SelectOptions?.invalid && SelectOptions?.touched" formControlName="SelectOptions" class="form-select" >
+         <option disabled [defaultSelected]="defaultSelectedOption">Where You Hear About Us</option>
+         <option >Facebook</option>
+         <option >Twitter</option>
+         <option >Google</option>
+      </select>
+
+      <div *ngIf="SelectOptions?.invalid && SelectOptions?.touched">
+        <small *ngIf="SelectOptions?.errors?.['required']" class="text-danger">option is required</small>
+      </div>
+    </div>
+
+    <br>
+    <button [class]="RegisterationForm.invalid?'btn btn-danger':'btn btn-success'" type="submit" [disabled]="RegisterationForm.invalid" style="margin-left: 1%;" >Register</button>
+
+  </form>
+</div>

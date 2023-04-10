@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <a routerLink="home" class="navbar-brand">Brand</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav">
+              <a routerLink="home" class="nav-item nav-link active">Home</a>
+              <a routerLink="products" class="nav-item nav-link">Products</a>
+
+              <a routerLink="users" class="nav-item nav-link ">Users</a>
+              <a routerLink="posts" class="nav-item nav-link">Posts</a>
+              <a routerLink="notes" class="nav-item nav-link">Notes</a>
+
+
+          </div>
+          <form class="d-flex">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+              </div>
+          </form>
+          <div class="navbar-nav">
+             <a routerLink="register" class="nav-item nav-link">Register</a>
+              <a routerLink="login" class="nav-item nav-link">Login</a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+
+<!-- <input style="margin-left: 20px;" type="text" [value]="name"> -->
+
+

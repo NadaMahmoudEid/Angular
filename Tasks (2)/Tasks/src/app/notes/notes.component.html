@@ -1,0 +1,51 @@
+
+
+<div class="container" style="border-radius: 50px;background-color:black;padding: 2%;margin-top: 3%;margin-bottom: 5%;">
+
+  <form [formGroup]="NotesForm" (ngSubmit)="SubmitData()">
+  <div style="color:white">{{NotesForm.value |json}}</div>
+
+    <div class="form-group" style="padding: 1%;">
+      <label style="color:white">Name:</label>
+      <input [class.is-invalid]="Name?.invalid && Name?.touched "
+        formControlName="Name" type="text" class="form-control">
+      <div *ngIf="Name?.invalid && Name?.touched">
+        <small *ngIf="Name?.errors?.['required']" class="text-danger">Name is required</small>
+        <small *ngIf="Name?.errors?.['NotAllowedNames']" class="text-danger">word admin or adminstrator is forbidden</small>
+
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group">
+      <label style="color:white">Products:</label>
+      <select [class.is-invalid]="SelectOptions?.invalid && SelectOptions?.touched" formControlName="SelectOptions" class="form-select" >
+         <option *ngFor="let product of productListFromService" >{{product.Name}}</option>
+      </select>
+
+      <div *ngIf="SelectOptions?.invalid && SelectOptions?.touched">
+        <small *ngIf="SelectOptions?.errors?.['required']" class="text-danger">option is required</small>
+      </div>
+    </div>
+
+     <div class="form-check mb-3" style="padding: 1%;">
+      <label style="color:white" class="form-check-label">Does This Product contain discount?</label>
+      <input formControlName="Subscribe" type="checkbox" class="form-check-input"
+        style="margin-left: 0.6%;">
+
+    </div>
+
+    <div formArrayName="AlternativeComment" *ngFor="let email of AlternativeComment.controls; let i=index">
+      <label style="color:white">Comment Num {{i+1}} </label>
+      <input type="text" [formControlName]="i" class="form-control">
+      <button (click)="clearComment(i)" class="btn btn-danger">clear email</button>
+    </div>
+    <button (click)="addAlternativeComment()" class="btn btn-success float-right" style="margin-left: 0.8%;">Add Another
+      Comment</button>
+
+
+    <br>
+    <button [class]="NotesForm.invalid?'btn btn-danger':'btn btn-success'" type="submit" [disabled]="NotesForm.invalid" style="margin-left: 1%;" >Register</button>
+
+  </form>
+</div>

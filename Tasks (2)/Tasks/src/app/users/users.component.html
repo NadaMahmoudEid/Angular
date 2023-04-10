@@ -1,0 +1,15 @@
+<br>
+
+<h1 style="color:#964B00">Users</h1>
+<div style="display:flex ;margin:auto;flex-wrap: wrap;">
+  <div *ngFor="let user of ListUser" style="padding:4px;margin:auto">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{user.name}}</h5>
+      <h5 class="card-title">{{user.username}}</h5>
+      <h5 class="card-title">{{user.email}}</h5>
+      <p class="card-text">Some quick example  and make up the bulk of the card's content.</p>
+      <a href="#" style="background-color:#964B00" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  </div>
